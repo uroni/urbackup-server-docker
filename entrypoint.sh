@@ -4,7 +4,7 @@ set -e
 cp -R /web-backup/* /usr/share/urbackup
 # Specifying backup-folder location
 echo "/backups" > /var/urbackup/backupfolder
-f [[ $ZFS != "" || $BTRFS != ""]]
+if [[ $ZFS != "" || $BTRFS != ""]]
 then
         # Specifying backup-folder for incremental images location
         echo "/backup_images" >/etc/urbackup/dataset
