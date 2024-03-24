@@ -1,0 +1,20 @@
+version: '3'
+services:
+  urbackup-server:
+    image: my-urbackup-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: urbackup-server-1
+    ports:
+      - "55413:55413"
+      - "127.0.0.1:55414:55414"
+      - "55414:55414"
+      - "55415:55415"
+      - "35623:35623/udp"
+    volumes:
+      - ./backups:/backups
+      - ./db:/var/urbackup
+      - ./logs:/var/log
+    restart: unless-stopped
+

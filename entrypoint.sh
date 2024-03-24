@@ -19,4 +19,5 @@ else
 fi
 chown urbackup:urbackup /backups
 chown urbackup:urbackup /var/urbackup
+service rsyslog start
 exec urbackupsrv "$@"

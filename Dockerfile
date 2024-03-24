@@ -37,6 +37,12 @@ RUN URL=https://hndl.urbackup.org/Server/${VERSION} && \
     && cp -R /usr/share/urbackup /web-backup \
     && chmod +x /usr/bin/entrypoint.sh
 
+# Rsyslog
+RUN apt-get update && apt-get install rsyslog -y
+RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf
+RUN service rsyslog start
+
+# Expose ports
 EXPOSE 55413
 EXPOSE 55414
 EXPOSE 55415
