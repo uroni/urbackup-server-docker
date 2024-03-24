@@ -4,6 +4,7 @@ set -x
 # Accepted values for ARCH are amd64, armhf, arm64, i386
 ARCH=${1:-amd64}
 VERSION=${2:-2.4.15}
+TARGETPLATFORM="linux/${ARCH}"
 OPTS=${3}
 TAG=${VERSION}_${ARCH}
 
@@ -31,6 +32,7 @@ fi
 docker build \
           --build-arg ARCH=${ARCH} \
           --build-arg VERSION=${VERSION} \
+          --build-arg TARGETPLATFORM=${TARGETPLATFORM} \
           --build-arg IMAGE_ARCH=${IMAGE_ARCH} \
           --build-arg BTRFS=${BTRFS} \
           --build-arg ZFS=${ZFS} \

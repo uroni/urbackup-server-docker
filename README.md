@@ -76,3 +76,9 @@ For example if you want to build an image for version 2.4.10 on armhf use the fo
 ```
 ./build.sh armhf 2.4.10
 ```
+
+If you want to specify the filesystem which it should use (zfs or btrfs) use the following command:
+```
+./build.sh armhf 2.4.10 zfs (e.g. for ZFS)
+```
+
