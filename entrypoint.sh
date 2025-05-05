@@ -4,6 +4,13 @@ set -e
 cp -R /web-backup/* /usr/share/urbackup
 # Specifying backup-folder location
 echo "/backups" > /var/urbackup/backupfolder
+# Set ZFS dataset if ENV variable is not empty
+if [[ -v ZFS_IMAGE ]]; then
+	echo "$ZFS_IMAGE" > /etc/urbackup/dataset
+fi
+if [[ -v ZFS_FILES ]]; then
+	echo "$ZFS_FILES" > /etc/urbackup/dataset_file
+fi
 # Giving the user and group "urbackup" the provided UID/GID
 if [[ $PUID != "" ]]
 then
