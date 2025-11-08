@@ -1,4 +1,4 @@
-## Multiarch (amd64/i386/armhf/arm64(aarch64)) docker images for UrBackup server.
+## Multiarch (amd64/arm64(aarch64)) docker images for UrBackup server.
 Pulling the `:latest` tag should automatically grab the right image for your arch.
 
 Most of the original code is based on the image by [Whatang](https://github.com/Whatang/docker_urbackup)
@@ -26,6 +26,8 @@ For BTRFS-Support add `--cap-add SYS_ADMIN` to the command above
 
 For ZFS support add `--device /dev/zfs` to the command above
 
+Add `-e ZFS_IMAGE=tank/images` and `-e ZFS_FILES=tank/files` to the command above if you want to set the ZFS dataset via an ENV variable instead of mounting `/etc/urbackup/dataset*`
+
 If you want to externally bind-mount the www-folder add `-v /path/to/wwwfolder:/usr/share/urbackup`
 
 ### Or via docker-compose (compatible with stacks in Portainer): 
@@ -43,15 +45,21 @@ services:
       - PUID=1000 # Enter the UID of the user who should own the files here
       - PGID=100  # Enter the GID of the user who should own the files here
       - TZ=Europe/Berlin # Enter your timezone
+      # Uncomment the next lines if you want to set the ZFS datasets via ENV variables instead of mounting /etc/urbackup/dataset*
+      #- ZFS_IMAGE=tank/images
+      #- ZFS_FILES=tank/files
     volumes:
       - /path/to/your/database/folder:/var/urbackup
       - /path/to/your/backup/folder:/backups
       # Uncomment the next line if you want to bind-mount the www-folder
       #- /path/to/wwwfolder:/usr/share/urbackup
     network_mode: "host"
-    # Activate the following two lines for BTRFS support
+    # Uncomment the following two lines if you're using BTRFS support
     #cap_add:
-    #  - SYS_ADMIN   
+    #  - SYS_ADMIN
+    # Uncomment the following two lines if you're using ZFS support
+    #devices:
+    #  - /dev/zfs:/dev/zfs
   
 ```              
 	     
