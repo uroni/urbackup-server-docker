@@ -1,4 +1,4 @@
-ARG DEBIAN=bullseye
+ARG DEBIAN=trixie
 FROM debian:${DEBIAN}
 
 ARG DEBIAN=bullseye
