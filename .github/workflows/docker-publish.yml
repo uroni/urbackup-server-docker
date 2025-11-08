@@ -52,14 +52,3 @@ jobs:
           tags: |
             uroni/urbackup-server:${{ steps.extract_branch.outputs.branch }}-btrfs
             uroni/urbackup-server:${{ steps.extract_branch.outputs.branch }}
-      -
-        name: Build and push ZFS variant
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          platforms: linux/amd64
-          push: true
-          build-args: |
-            ZFS=1
-          tags: |
-            uroni/urbackup-server:${{ steps.extract_branch.outputs.branch }}-zfs
