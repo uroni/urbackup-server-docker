@@ -20,6 +20,7 @@ RUN URL=https://hndl.urbackup.org/Server/${VERSION} && \
     && echo "deb $dry\ndeb-src $dry" >/etc/apt/sources.list.d/${DEBIAN}-backports.list \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
+    && apt-get libguestfs-tools \
     && apt-get install -y wget \
     && wget -q "$URL" -O /root/urbackup-server.deb \
     && apt-get remove -y wget \
@@ -42,7 +43,7 @@ EXPOSE 55414
 EXPOSE 55415
 EXPOSE 35623/udp
 
-# /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted
-VOLUME [ "/var/urbackup", "/var/log", "/backups" ]
+# /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted.
+VOLUME [ "/var/urbackup", "/var/log", "/backups", "/etc/default" ]
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["run"]
