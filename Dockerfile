@@ -17,7 +17,7 @@ RUN URL=https://hndl.urbackup.org/Server/${VERSION} && \
     esac \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
-    && apt-get install -y wget \
+    && apt-get install -y wget adduser \
     && wget -q "$URL" -O /root/urbackup-server.deb \
     && apt-get remove -y wget \
     && apt-get autoremove -y \
