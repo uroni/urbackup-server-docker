@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/i386,linux/armhf
+          platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
             BTRFS=1
