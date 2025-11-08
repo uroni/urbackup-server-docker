@@ -15,8 +15,6 @@ RUN URL=https://hndl.urbackup.org/Server/${VERSION} && \
          "linux/arm/v7") URL=$URL/urbackup-server_${VERSION}_armhf.deb  ;; \
          "linux/386" | "linux/i386")   URL=$URL/debian/${DEBIAN}/urbackup-server_${VERSION}_i386.deb   ;; \
     esac \
-    && dry="http://deb.debian.org/debian ${DEBIAN}-backports main contrib" \
-    && echo "deb $dry\ndeb-src $dry" >/etc/apt/sources.list.d/${DEBIAN}-backports.list \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get install -y wget \
@@ -31,7 +29,6 @@ RUN URL=https://hndl.urbackup.org/Server/${VERSION} && \
             ${ZFS:+zfsutils-linux} \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-            /etc/apt/sources.list.d/${DEBIAN}-backports.list \
             /root/urbackup-server.deb \
     && cp -R /usr/share/urbackup /web-backup \
     && chmod +x /usr/bin/entrypoint.sh
