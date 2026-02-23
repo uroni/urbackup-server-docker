@@ -45,4 +45,4 @@ EXPOSE 35623/udp
 # /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted
 VOLUME [ "/var/urbackup", "/var/log", "/backups" ]
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["run", "--rotate-filesize", "20971520"]
+CMD ["run", "-v", "warn", "-g", "20971520"]
