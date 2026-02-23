@@ -1,5 +1,18 @@
 #!/bin/bash
 set -e
+
+if [[ -n "$TMPDIR" ]]; then
+    if [ -d "$TMPDIR" ]; then
+        rm -f "$TMPDIR"/*
+    fi
+else
+    for dir in /tmp /var/tmp; do
+        if [ -d "$dir" ]; then
+            rm -f "$dir"/*
+        fi
+    done
+fi
+
 # Copy www-folder back, if folder is bind-mounted
 cp -R /web-backup/* /usr/share/urbackup
 # Specifying backup-folder location
