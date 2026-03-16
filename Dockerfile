@@ -42,7 +42,7 @@ EXPOSE 55414
 EXPOSE 55415
 EXPOSE 35623/udp
 
-# /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted
-VOLUME [ "/var/urbackup", "/var/log", "/backups" ]
+# /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted,  /etc/default/urbackupsrv export for config can be changed 
+VOLUME [ "/var/urbackup", "/var/log", "/backups", "/etc/default/urbackupsrv" ]
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["run", "-v", "warn", "-g", "20971520"]
