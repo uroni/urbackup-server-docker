@@ -42,7 +42,9 @@ EXPOSE 55414
 EXPOSE 55415
 EXPOSE 35623/udp
 
+ENV URBACKUP_LOGLEVEL=warn URBACKUP_LOG_ROTATE_FILESIZE=20971520
+
 # /usr/share/urbackup will not be exported to a volume by default, but it still can be bind mounted
 VOLUME [ "/var/urbackup", "/var/log", "/backups" ]
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["run", "-v", "warn", "-g", "20971520"]
+CMD ["run"]
