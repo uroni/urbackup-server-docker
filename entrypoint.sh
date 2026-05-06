@@ -20,9 +20,11 @@ echo "/backups" > /var/urbackup/backupfolder
 # Set ZFS dataset if ENV variable is not empty
 if [[ -v ZFS_IMAGE ]]; then
 	echo "$ZFS_IMAGE" > /etc/urbackup/dataset
+	zfs mount -R "$ZFS_IMAGE"
 fi
 if [[ -v ZFS_FILES ]]; then
 	echo "$ZFS_FILES" > /etc/urbackup/dataset_file
+	zfs mount -R "$ZFS_FILES"
 fi
 # Giving the user and group "urbackup" the provided UID/GID
 if [[ $PUID != "" ]]
